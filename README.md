@@ -18,5 +18,5 @@ add them to the cart, and purchase them.
 ```
 
 3) run ballerina build --sourceroot HipsterShop/ -a
-4) kubectl apply -f /home/waruna/dev/ballerina/git/ballerina-microservcies-demo/HipsterShop/target/kubernetes/shop
+4) kubectl apply -f HipsterShop/target/kubernetes/shop
 5) kubectl apply -f frontend/frontend-kubernetes-manifests.yaml
