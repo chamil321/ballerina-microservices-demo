@@ -56,7 +56,7 @@ spec:
           - name: PRODUCT_CATALOG_SERVICE_ADDR
             value: "productcatalogservice:3550"
           - name: CURRENCY_SERVICE_ADDR
-            value: "10.110.136.163:7000"
+            value: "currencyservice:7000"
           - name: CART_SERVICE_ADDR
             value: "cartservice:7070"
           - name: RECOMMENDATION_SERVICE_ADDR
