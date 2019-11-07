@@ -6,6 +6,8 @@ import ballerinaDemo/currencyservice;
 import ballerinaDemo/emailservice;
 import ballerinaDemo/shippingservice;
 
+cartservice:CartServiceBlockingClient cs = new("http://cartservice:7070");
+
 @kubernetes:Service {
 
     serviceType: "ClusterIP",
@@ -16,12 +18,13 @@ import ballerinaDemo/shippingservice;
     dockerHost:"tcp://192.168.99.100:2376", 
     dockerCertPath:"/home/waruna/.minikube/certs"
 }
+
 service CheckoutService on new grpc:Listener(5050) {
     resource function PlaceOrder(grpc:Caller caller, PlaceOrderRequest value) {
         // Implementation goes here.
         // Calling other servcies like email, payment need to be implemented.
         // You should return a PlaceOrderResponse
-        cartservice:CartServiceBlockingClient cs = new("http://cartservice:7070");
+        
         cartservice:GetCartRequest getCart = {user_id:value.user_id};
         var response = cs-> GetCart(getCart);
         if (response is grpc:Error) {
@@ -44,8 +47,7 @@ service CheckoutService on new grpc:Listener(5050) {
             }
 
             currencyservice:Money shipping_cost = {currency_code:"USD", units:1000, nanos:10};
-            shippingservice:Address address = { street_address:"Pagoda road",city:"Nugegoda",state:"CMB",
-            country:"SL", zip_code:10250};
+            shippingservice:Address address = value.address;
             
             emailservice:OrderResult or = {order_id:"o1234", shipping_tracking_id:"tracking9876",
                                 shipping_cost:shipping_cost, shipping_address:address,
