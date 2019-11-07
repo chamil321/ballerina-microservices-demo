@@ -7,13 +7,21 @@ add them to the cart, and purchase them.
 
 ## How to run
 
-1) Clone the repo
-2) Change @kubernetes:Deployment config as per your configuration.
+1. Clone the repository.
+2. Change @kubernetes:Deployment config as per your configuration.
 
+```
 @kubernetes:Deployment {
     dockerHost:"tcp://192.168.99.100:2376", 
     dockerCertPath:"/home/waruna/.minikube/certs"
 }
-3) run ballerina build --sourceroot HipsterShop/ -a
-4) kubectl apply -f /home/waruna/dev/ballerina/git/ballerina-microservcies-demo/HipsterShop/target/kubernetes/shop
-5) kubectl apply -f frontend/frontend-kubernetes-manifests.yaml
+```
+
+3. Execute setup.sh script.
+
+```
+sh setup.sh
+```
+4. Find the IP address of your application, then visit the application on your browser to confirm installation.
+
+kubectl get service/frontend-external 
