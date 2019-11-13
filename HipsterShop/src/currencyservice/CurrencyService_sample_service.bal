@@ -29,7 +29,7 @@ service CurrencyService on new grpc:Listener(7000) {
         // Implementation goes here.
 
         // You should return a Money
-        Money resp = {currency_code:value.to_code, units:20, nanos:10};
+        Money resp = {currencyCode:value.to_code, units:20, nanos:10};
         io:println(resp);
         var e = caller->send(resp);
         e = caller->complete();

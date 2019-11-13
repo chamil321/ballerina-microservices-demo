@@ -81,9 +81,9 @@ public type CurrencyServiceClient client object {
 
 
 public type Money record {|
-    string currency_code;
+    string currencyCode;
     int units;
-    int nanos;
+    int nanos?;
     
 |};
 
