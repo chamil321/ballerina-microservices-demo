@@ -5,7 +5,7 @@ public type Product record {|
     string name;
     string description;
     string picture;
-    currencyservice:Money priceUsd;
+    currencyservice:Money price_usd;
     string[] categories;
 |};
 
